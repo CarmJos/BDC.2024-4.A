@@ -8,7 +8,6 @@
 
 相关代码基于 Python 实现，文章基于 LaTeX 编写。
 
-
 ## 题目要求
 
 在地质学和矿物学领域，岩矿石薄片广泛应用于岩石分类、岩石演化、岩石地球化学以及矿物学等领域，对于矿产勘探和开发具有重要意义。
@@ -51,3 +50,17 @@
 > [!NOTE]
 > 最终提交附件时，将文件命名为“队号.xlsx”（例如：队号为bdc240001，最中提交结果的表格命名为“bdc240001.xlsx”）
 
+## 开源协议
+
+该项目基于 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) 开源协议发布。
+
+## 致谢
+
+万分感谢我们的导师（韩老师）优良指导和鼎力支持。
+
+万分感谢队员们 (@CarmJos, @WangGold3, @hanghangz628) 的辛勤劳作与不懈努力。
+
+![Jiangsu University](.doc/images/school-logo.png)
+
+非常感谢 Jetbrains 慷慨地为我们提供开源或教育许可，让我们能够从事该项目和其他开源项目。
+![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)

@@ -1,5 +1,7 @@
 # BDC(2024-4) A题：岩石的自动鉴定
 
+<img align="right" height=30% width=30% src=".doc/images/logo.png"  alt="banner"/>
+
 该项目针对“未来杯”2024年第四届高校大数据挑战赛A题，提供了基于机器学习的岩石的自动鉴定模型方案与解题代码：
 
 1. 项目简述与分析

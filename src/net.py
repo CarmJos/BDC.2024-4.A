@@ -88,7 +88,7 @@ class VGG16(nn.Module):
             nn.Dropout(),
 
             nn.Linear(4096, 4096),
-            # nn.BatchNorm1d(4096),  # 1D BN
+#             nn.BatchNorm1d(4096),  # 1D BN
             nn.ReLU(inplace=True),
             nn.Dropout(),
 
@@ -96,8 +96,8 @@ class VGG16(nn.Module):
         )
 
 
-def forward(self, x):
-    x = self.features(x)
-    x = torch.flatten(x, 1)  # 展开特征图
-    x = self.classifier(x)
-    return x
+    def forward(self, x):
+        x = self.features(x)
+        x = torch.flatten(x, 1)
+        x = self.classifier(x)
+        return x

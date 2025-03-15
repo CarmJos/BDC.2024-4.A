@@ -29,7 +29,7 @@ VGG-16结构: https://www.geeksforgeeks.org/vgg-16-cnn-model/
 总参数: 134,862,568
 
 ## 优化
-为了能更容易的训练VGGNet，引入了批量规范化层BN(`net.py`中的`nn.BatchNorm2d`和`nn.BatchNorm1d`)
+为了能更容易的训练VGGNet，引入了批量规范化层BN。
 
 # 训练参数(待定)
 每次传递的样本个数`batch_size`: 64

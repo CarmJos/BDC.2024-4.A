@@ -24,13 +24,12 @@ def main():
 
     with torch.no_grad():
         for f in os.listdir("../data/test/"):
-            image = Image.open(f)
-            image = image.resize((224, 224))
-            image = np.array(image)
-            image = transform(image)
+            image = Image.open("../data/test/" + f).convert("RGB")
+            image = transform(image).cuda()
+            image = image.unsqueeze(0)
             output = model(image)
             _, predicted = torch.max(output, 1)
-            print(predicted)
+            print(f"{f}={predicted}")
 
 
 if __name__ == '__main__':

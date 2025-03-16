@@ -4,49 +4,24 @@ import re
 from PIL import Image
 from torch.utils.data import Dataset
 
-import config
+from src.labeler import Labeler
 
 
 class ImageClassifyDataset(Dataset):
-    def __init__(self, paths: list, transform, id_range: list):
+    def __init__(self, paths: list, transform, labeler: Labeler, id_range: list):
         self.path = paths
         self.transform = transform
 
-        self.label_to_num = {}
-        # with open("../map.txt", "r") as f:
-        #     while line := f.readline():
-        #         sec = line.split(" ")
-        #         label = int(sec[0].strip())
-        #         label_str = sec[1].strip()
-        #         self.label_to_num[label_str] = label
-
         self.data = []
-        label_pattern = re.compile(config.label_pattern)
-        group_pattern = re.compile(config.group_pattern)
-        id_pattern = re.compile(config.id_pattern)
 
-        self.imgs = {}
+        self.img_cache = {}
 
         for directory in paths:
             for file in os.listdir(directory):
                 img_path = directory + "/" + file
 
-                matches = label_pattern.findall(file)
-                if len(matches) < 2:
-                    continue
-                class_name = matches[0]
-                subclass_name = matches[1]
-
-                matches = group_pattern.findall(file)
-                if not matches:
-                    continue
-                group_num = int(matches[0])
-
-                matches = id_pattern.findall(file)
-                if not matches:
-                    continue
-                id_num = int(matches[0][2])
-                if id_num not in id_range:
+                group_num = labeler.label(file, id_range)
+                if group_num < 0:
                     continue
 
                 self.data.append({
@@ -54,17 +29,22 @@ class ImageClassifyDataset(Dataset):
                     "url": img_path
                 })
 
-                self.imgs[group_num] = Image.open(img_path).convert("RGB")
+                # self.img_cache[img_path] = Image.open(img_path).convert("RGB")
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, index):
         img_data = self.data[index]
+        img_path = img_data["url"]
 
         label = img_data["label"]
-        img = self.imgs[label]
+        if img_path in self.img_cache:
+            img = self.img_cache[img_path]
+        else:
+            img = Image.open(img_path).convert("RGB")
 
-        img = self.transform(img)
+        if self.transform:
+            img = self.transform(img)
 
         return img, label

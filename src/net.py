@@ -83,12 +83,12 @@ class VGG16(nn.Module):
         self.classifier = nn.Sequential(
             # Flattening
             nn.Linear(512 * 7 * 7, 4096),
-            # nn.BatchNorm1d(4096),  # 1D BN
+            nn.BatchNorm1d(4096),  # 1D BN
             nn.ReLU(inplace=True),
             nn.Dropout(),
 
             nn.Linear(4096, 4096),
-#             nn.BatchNorm1d(4096),  # 1D BN
+            nn.BatchNorm1d(4096),  # 1D BN
             nn.ReLU(inplace=True),
             nn.Dropout(),
 

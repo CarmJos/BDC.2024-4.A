@@ -12,4 +12,4 @@ group_pattern = r"\d+"
 # 训练参数
 batch_size = 32
 learning_rate = 0.01
-num_epochs = 200
+num_epochs = 50

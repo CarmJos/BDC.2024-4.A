@@ -77,10 +77,12 @@ def main(image_folder, output_path):
 
 
 if __name__ == "__main__":
-    # image_folder = "../data/source/南京大学教学沉积岩薄片照片数据集/"
-    # image_folder = "../data/source/南京大学变质岩教学薄片照片数据集/"
-    image_folder = "../data/source/南京大学火成岩教学薄片照片数据集/"
-    output_path = "../color_stat.png"
+    image_folders = ["../../data/source/南京大学教学沉积岩薄片照片数据集",
+                     "../../data/source/南京大学变质岩教学薄片照片数据集",
+                     "../../data/source/南京大学火成岩教学薄片照片数据集"]
 
-    main(image_folder, output_path)
-    print(f"Histogram saved to {output_path}")
+    for image_folder in image_folders:
+        output_path = f"../../color_stat{image_folder[image_folder.rindex('/') + 1:]}.png"
+        main(image_folder, output_path)
+        print(f"Color histogram saved to {output_path}")
+

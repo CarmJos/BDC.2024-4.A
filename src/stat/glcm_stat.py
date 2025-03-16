@@ -6,7 +6,7 @@ from skimage.feature import graycomatrix, graycoprops
 from skimage import color
 
 
-def calculate_texture_feature(image_folder):
+def calculate_glcm(image_folder):
     # 初始化累积的纹理相关系数
     texture_features = []
 
@@ -50,7 +50,7 @@ def plot_texture_histogram(texture_features, output_path):
     plt.hist(texture_features, bins=30, color='gray', alpha=0.7, edgecolor='black')
 
     # 添加标题和标签
-    plt.title('Average Texture Feature (Correlation) Histogram')
+    plt.title('Average Texture Feature Histogram')
     plt.xlabel('Texture Correlation')
     plt.ylabel('Frequency')
 
@@ -61,16 +61,18 @@ def plot_texture_histogram(texture_features, output_path):
 
 def main(image_folder, output_path):
     # 计算所有图片的纹理相关系数
-    texture_features = calculate_texture_feature(image_folder)
+    texture_features = calculate_glcm(image_folder)
 
     # 绘制并保存纹理特征相关系数的直方图
     plot_texture_histogram(texture_features, output_path)
 
 
 if __name__ == "__main__":
-    image_folders = ["../data/source/南京大学教学沉积岩薄片照片数据集", "../data/source/南京大学变质岩教学薄片照片数据集", "../data/source/南京大学火成岩教学薄片照片数据集"]
+    image_folders = ["../../data/source/南京大学教学沉积岩薄片照片数据集",
+                     "../../data/source/南京大学变质岩教学薄片照片数据集",
+                     "../../data/source/南京大学火成岩教学薄片照片数据集"]
 
     for image_folder in image_folders:
-        output_path = f"../texture_stat{image_folder[image_folder.rindex('/') + 1:]}.png"
+        output_path = f"../../glcm_stat{image_folder[image_folder.rindex('/') + 1:]}.png"
         main(image_folder, output_path)
-        print(f"Texture histogram saved to {output_path}")
+        print(f"Texture GLCM histogram saved to {output_path}")

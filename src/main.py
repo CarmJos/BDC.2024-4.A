@@ -63,12 +63,9 @@ def train_stone_classification():
     trainer.save('../model_stone.pth')
 
 
-def solution3():
-
-
 def main():
-    # train_sedimentary()
-    train_stone_classification()
+    train_sedimentary()
+    # train_stone_classification()
 
 
 if __name__ == '__main__':

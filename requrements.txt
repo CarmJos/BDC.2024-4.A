@@ -2,5 +2,5 @@ torch==2.6.0
 torchvision==0.21.0
 pillow==11.1.0
 matplotlib==3.10.1
-opencv-headless=4.11.0.86
+opencv-python-headless=4.11.0.86
 pandas==2.2.3
